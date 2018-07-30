@@ -36,6 +36,8 @@ Follow the [React Native Getting Started Guide](https://facebook.github.io/react
     $ npm run fabric-android --key="YOUR_API_KEY" --secret="YOUR_API_SECRET"
     ```
 
+- Set your server URL in `app.json`
+
 - Run application
     ```bash
     $ npm run ios

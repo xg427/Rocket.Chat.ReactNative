@@ -279,32 +279,7 @@ export default class Sidebar extends Component {
 				extraData={this.props.user}
 				renderItem={this.renderStatusItem}
 				keyExtractor={keyExtractor}
-			/>,
-			this.renderSeparator('separator-status'),
-			<FlatList
-				key='servers-list'
-				data={this.state.servers}
-				extraData={this.props.server}
-				renderItem={this.renderServer}
-				keyExtractor={keyExtractor}
-			/>,
-			this.renderSeparator('separator-add-server'),
-			this.renderItem({
-				text: I18n.t('Add_Server'),
-				left: <Icon
-					name='add'
-					size={20}
-				/>,
-				onPress: () => {
-					this.closeDrawer();
-					this.toggleServers();
-					NavigationActions.push({
-						screen: 'NewServerView',
-						title: I18n.t('Add_Server')
-					});
-				},
-				testID: 'sidebar-add-server'
-			})
+			/>
 		]
 	)
 

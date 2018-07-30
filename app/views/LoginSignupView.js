@@ -7,6 +7,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { Base64 } from 'js-base64';
 
 import { open, close } from '../actions/login';
+import { selectServer } from '../actions/server';
 import LoggedView from './View';
 import sharedStyles from './Styles';
 import scrollPersistTaps from '../utils/scrollPersistTaps';
@@ -14,6 +15,7 @@ import random from '../utils/random';
 import Button from '../containers/Button';
 import Loading from '../containers/Loading';
 import I18n from '../i18n';
+import { server as defaultServer } from '../../app.json';
 
 const styles = StyleSheet.create({
 	container: {
@@ -58,7 +60,8 @@ const styles = StyleSheet.create({
 	services: state.login.services
 }), dispatch => ({
 	open: () => dispatch(open()),
-	close: () => dispatch(close())
+	close: () => dispatch(close()),
+	selectServer: server => dispatch(selectServer(server))
 }))
 /** @extends React.Component */
 export default class LoginSignupView extends LoggedView {
@@ -77,7 +80,8 @@ export default class LoginSignupView extends LoggedView {
 		Accounts_OAuth_Linkedin: PropTypes.bool,
 		Accounts_OAuth_Meteor: PropTypes.bool,
 		Accounts_OAuth_Twitter: PropTypes.bool,
-		services: PropTypes.object
+		services: PropTypes.object,
+		selectServer: PropTypes.func.isRequired
 	}
 
 	constructor(props) {
@@ -86,6 +90,7 @@ export default class LoginSignupView extends LoggedView {
 
 	componentDidMount() {
 		this.props.open();
+		this.props.selectServer(defaultServer);
 	}
 
 	componentWillReceiveProps(nextProps) {
